@@ -1,0 +1,46 @@
+//
+// Prefix header for all source files of the 'ExpandingView' target in the 'ExpandingView' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
+
+#ifdef DEBUG
+
+#  define LOG(...) NSLog(__VA_ARGS__)
+
+#  define LOG_CURRENT_METHOD NSLog(@"%@-%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
+
+#else
+
+#  define LOG(...) ;
+
+#  define LOG_CURRENT_METHOD ;
+
+#endif
+
+
+
+#define kAPIURLDomain @"http://ffpython.sinaapp.com" 
+
+#define		kLoginUrl					        kAPIURLDomain@"/login"   
+
+#define     kNewsUrl                            @"http://www.xiushuang.com/client/index.php?s=/Portal/p_list/catid/61/p/"
+
+
+#define DEBUG_RECEIVE_DATA(data) NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding])  //打开收到数据的调试信息
+
+#define DEBUG_REQUEST_INFO(string,info) NSLog(@"%@\n%@",string,info) //打开收到URL的调试信息
+#define kCurrentUserId                          @"kCurrentUserId" //当前用户id
+#define kCurrentUserName                        @"kCurrentUserName" //当前用户名
+#define dataBaseFileName                        @"myDataBase.sqlite3"
