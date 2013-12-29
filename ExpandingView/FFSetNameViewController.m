@@ -50,7 +50,8 @@
     [super viewDidLoad];
     self.title = @"战斗力查询";
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor midnightBlueColor];
+    //设置视图背景
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"viewbg.png"]]];
     //设置名称输入
     [self setTheUserName];
     //设置服务器名称输入
@@ -283,6 +284,7 @@
     serverNamePV.showsSelectionIndicator = YES;
     serverNamePV.dataSource = self;
     serverNamePV.delegate = self;
+    serverNamePV.backgroundColor = RGBA(203, 203, 203, 0.6);
     
     [self.view addSubview:serverNamePV];
     

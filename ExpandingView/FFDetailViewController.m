@@ -71,7 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    [self.leveyTabBarController setTabBarTransparent:YES];
+    //[self.leveyTabBarController setTabBarTransparent:YES];
     //    [self.leveyTabBarController hidesTabBar:NO animated:YES];
 }
 

@@ -51,7 +51,7 @@
 		
 		_containerView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 		
-		_transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight)];
+		_transitionView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320.0f, _containerView.frame.size.height - kTabBarHeight)];
 		_transitionView.backgroundColor =  [UIColor groupTableViewBackgroundColor];
 		
 		_tabBar = [[LeveyTabBar alloc] initWithFrame:CGRectMake(0, _containerView.frame.size.height - kTabBarHeight, 320.0f, kTabBarHeight) buttonImages:arr];
@@ -136,7 +136,7 @@
     }
     float tabBarOriginY = tabBarOriginY = yesOrNO ? self.view.frame.size.height : self.view.frame.size.height - kTabBarHeight;
     self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, tabBarOriginY, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-    //_transitionView.frame = CGRectMake(_transitionView.frame.origin.x, _transitionView.frame.origin.y, _transitionView.frame.size.width, tabBarOriginY);
+    _transitionView.frame = CGRectMake(_transitionView.frame.origin.x, _transitionView.frame.origin.y, _transitionView.frame.size.width, tabBarOriginY);
     //使其透明返回时
     _transitionView.frame = _containerView.bounds;
     if (animated == YES)

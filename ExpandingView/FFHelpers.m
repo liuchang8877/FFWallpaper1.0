@@ -35,4 +35,14 @@
     [alert show];
 }
 
+//去掉ios7下被导航栏遮挡UIView得问题
++ (void)removerCoverView:(UIViewController*)viewController
+{
+    if (IOS7) {
+        viewController.edgesForExtendedLayout = UIRectEdgeNone;
+        viewController.extendedLayoutIncludesOpaqueBars = NO;
+        viewController.modalPresentationCapturesStatusBarAppearance = NO;
+    }
+}
+
 @end

@@ -31,7 +31,7 @@
 			btn = [UIButton buttonWithType:UIButtonTypeCustom];
 			btn.showsTouchWhenHighlighted = YES;
 			btn.tag = i;
-			btn.frame = CGRectMake(width * i + 25, 10, width - 50, frame.size.height - 30);
+			btn.frame = CGRectMake(width * i + 3, 4, width, frame.size.height);
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Default"] forState:UIControlStateNormal];
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Highlighted"] forState:UIControlStateHighlighted];
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Selected"] forState:UIControlStateSelected];
@@ -43,22 +43,22 @@
 			[self addSubview:btn];
 		}
         
-        //添加名称
-        NSMutableArray *myNameArr = [[NSMutableArray alloc]initWithCapacity:5];
-        [myNameArr addObject:@"壁纸"];
-        [myNameArr addObject:@"查询"];
-        [myNameArr addObject:@"公告"];
-        [myNameArr addObject:@"设置"];
-        CGFloat nameWidth = 320.0f / [myNameArr count];
-        for (int i = 0; i < [myNameArr count]; i++) {
-            UILabel *myLabel = [[UILabel alloc]init];
-            myLabel.frame = CGRectMake(nameWidth*i + 27, 15, width - 10, frame.size.height);
-            myLabel.font = [UIFont systemFontOfSize:12];
-            myLabel.text = [myNameArr objectAtIndex:i];
-            myLabel.backgroundColor = [UIColor clearColor];
-            myLabel.textColor = [UIColor whiteColor];
-            [self addSubview:myLabel];
-        }
+//        //添加名称
+//        NSMutableArray *myNameArr = [[NSMutableArray alloc]initWithCapacity:5];
+//        [myNameArr addObject:@"壁纸"];
+//        [myNameArr addObject:@"查询"];
+//        [myNameArr addObject:@"公告"];
+//        [myNameArr addObject:@"设置"];
+//        CGFloat nameWidth = 320.0f / [myNameArr count];
+//        for (int i = 0; i < [myNameArr count]; i++) {
+//            UILabel *myLabel = [[UILabel alloc]init];
+//            myLabel.frame = CGRectMake(nameWidth*i + 27, 15, width - 10, frame.size.height);
+//            myLabel.font = [UIFont systemFontOfSize:12];
+//            myLabel.text = [myNameArr objectAtIndex:i];
+//            myLabel.backgroundColor = [UIColor clearColor];
+//            myLabel.textColor = [UIColor whiteColor];
+//            [self addSubview:myLabel];
+//        }
     }
     return self;
 }

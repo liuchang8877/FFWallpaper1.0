@@ -10,11 +10,13 @@
 #import "FFNewsPlistRequest.h"
 #import "FFStatus.h"
 #import "FFPlistItem.h"
-#import "FFHelper.h"
+#import "FFHelpers.h"
 #import "MyImageView.h"
 #import "SVPullToRefresh.h"
-#import "UIColor+FlatUI.h"
 
+#import "UIBarButtonItem+FlatUI.h"
+#import "UIColor+FlatUI.h"
+#import "UIFont+FlatUI.h"
 
 @interface FFNewsViewController () {
 
@@ -41,16 +43,39 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    //ios7适配
+    [FFHelpers removerCoverView:self];
     self.title = @"公告";
     self.view.backgroundColor = [UIColor midnightBlueColor];
     [self loadDataFromSer];
     [self setTheTableView];
+    //设置返回
+    [self setTheNavigationItem];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setTheNavigationItem {
+    
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor peterRiverColor]
+                                  highlightedColor:[UIColor belizeHoleColor]
+                                      cornerRadius:3
+                                   whenContainedIn:[UINavigationBar class], nil];
+    UIBarButtonItem *myBarItemLeft = [[UIBarButtonItem alloc] initWithTitle:@"返回"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(goBack)];
+    myBarItemLeft.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = myBarItemLeft;
+    
+}
+
+- (void)goBack {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loadDataFromSer {

@@ -29,14 +29,38 @@
 
 #endif
 
+//判断系统版本是ios7
+#define IOS7   ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
 
+//判断设备是否为iphone5
+#define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
+//颜色和透明度设置
+#define RGBA(r,g,b,a)               [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
+
+//web扩展
 #define kAPIURLDomain @"http://ffpython.sinaapp.com" 
 
 #define		kLoginUrl					        kAPIURLDomain@"/login"   
 
 #define     kNewsUrl                            @"http://www.xiushuang.com/client/index.php?s=/Portal/p_list/catid/61/p/"
+//获取新闻
+#define kDomain                @"http://orange2014.sinaapp.com/simplehtmldom_1_5/newsType/"
+#define kNewsListUrl           kDomain@"ios_getNews.php"
+//获取详情
+#define kNewsDetailUrl         kDomain@"show_news.php"
 
+//打印函数
+#define DLog(fmt, ...) NSLog((@"[FileName:%s]\n" "[FunctionName:%s]\n" "[LineNumber:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__); //打印函数
+
+//去掉警告的宏定义
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
 
 #define DEBUG_RECEIVE_DATA(data) NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding])  //打开收到数据的调试信息
 

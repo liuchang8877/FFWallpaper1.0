@@ -14,4 +14,5 @@
 + (void)setValue:(id)value forKey:(NSString *)key; //将键值对存储到NSUserDefault中
 + (id)valueForKey:(NSString *)key; //从NSUserDefault中得到key对应的value
 + (void)waringInfo:(NSString *) msgInfo;
++ (void)removerCoverView:(UIViewController*)viewController;//去掉ios7下被导航栏遮挡UIView得问题
 @end

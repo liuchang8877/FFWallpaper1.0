@@ -26,7 +26,6 @@
  */
 
 #import "TMAppDelegate.h"
-#import "TMTestTableViewController.h"
 #import "FFMainVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LeveyTabBarController.h"
@@ -34,10 +33,11 @@
 #import "FFViewController.h"
 #import "FFSettingViewController.h"
 #import "FFNewsViewController.h"
+#import "FFBusinessViewController.h"
 #import "FFMainVC.h"
 #import "MobClick.h"
-
-
+#import "FFHelpers.h"
+#import "MXSNewsViewController.h"
 
 @implementation TMAppDelegate {
 
@@ -56,7 +56,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    //设置Nav样式
+    [self setTheNavBar];
     //友盟分析
     [MobClick startWithAppkey:@"527ce65a56240b8df4039129"];
     //开启分析
@@ -76,25 +77,38 @@
     //self.window.rootViewController = self.tabbar;
     
     //TMTestTableViewController   *mainController = [[TMTestTableViewController alloc] init];
-    //首页
-    FFMainVC *mainController = [[FFMainVC alloc]init];
-    UINavigationController      *mainNav = [[UINavigationController alloc] initWithRootViewController:mainController];
-    mainNav.delegate = (id)self;
+    
+//    //首页
+//    FFMainVC *mainController = [[FFMainVC alloc]init];
+//    UINavigationController      *mainNav = [[UINavigationController alloc] initWithRootViewController:mainController];
+//    //mainNav.navigationBarHidden = YES;
+//    mainNav.delegate = (id)self;
+    
+    //新闻
+    MXSNewsViewController *myNewsVC = [[MXSNewsViewController alloc]init];
+    UINavigationController      *myNewsNav = [[UINavigationController alloc] initWithRootViewController:myNewsVC];
+    myNewsNav.delegate = (id)self;
     
     //战斗力查询
     FFSetNameViewController *setNameVC = [[FFSetNameViewController alloc]init];
     UINavigationController *setNameNav = [[UINavigationController alloc] initWithRootViewController:setNameVC];
-    
+    //setNameNav.navigationBarHidden = YES;
     setNameNav.delegate = (id)self;
     
-    //新闻
-    FFNewsViewController *myNewsVC = [[FFNewsViewController alloc]init];
-    UINavigationController *myNewsNav = [[UINavigationController alloc] initWithRootViewController:myNewsVC];
-    myNewsNav.delegate = (id)self;
+//    //新闻
+//    FFNewsViewController *myNewsVC = [[FFNewsViewController alloc]init];
+//    UINavigationController *myNewsNav = [[UINavigationController alloc] initWithRootViewController:myNewsVC];
+//    myNewsNav.delegate = (id)self;
+    //业务
+    FFBusinessViewController *myBusVC = [[FFBusinessViewController alloc]init];
+    UINavigationController *myBusNav  = [[UINavigationController alloc]initWithRootViewController:myBusVC];
+    //myBusNav.navigationBarHidden = YES;
+    myBusNav.delegate = (id)self;
     
     //设置
     FFSettingViewController *mySetVC = [[FFSettingViewController alloc]init];
     UINavigationController *mySetNav = [[UINavigationController alloc] initWithRootViewController:mySetVC];
+    //mySetNav.navigationBarHidden = YES;
     mySetNav.delegate = (id)self;
     
     //[self.tabbar setViewControllers:[NSArray arrayWithObject:mainNav]];
@@ -104,35 +118,39 @@
     //UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:mainNav];
     //nc2.delegate = (id)self;
 
-	NSArray *ctrlArr = [NSArray arrayWithObjects:mainNav,setNameNav,myNewsNav,mySetNav,nil];
+	NSArray *ctrlArr = [NSArray arrayWithObjects:myNewsNav,setNameNav,myBusNav,mySetNav,nil];
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic setObject:[UIImage imageNamed:@"01.png"] forKey:@"Default"];
-	[imgDic setObject:[UIImage imageNamed:@"01.png"] forKey:@"Highlighted"];
-	[imgDic setObject:[UIImage imageNamed:@"00.png"] forKey:@"Selected"];
+	[imgDic setObject:[UIImage imageNamed:@"11.png"] forKey:@"Default"];
+	[imgDic setObject:[UIImage imageNamed:@"11.png"] forKey:@"Highlighted"];
+	[imgDic setObject:[UIImage imageNamed:@"101.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic2 setObject:[UIImage imageNamed:@"02.png"] forKey:@"Default"];
-	[imgDic2 setObject:[UIImage imageNamed:@"02.png"] forKey:@"Highlighted"];
-	[imgDic2 setObject:[UIImage imageNamed:@"00.png"] forKey:@"Selected"];
+	[imgDic2 setObject:[UIImage imageNamed:@"12.png"] forKey:@"Default"];
+	[imgDic2 setObject:[UIImage imageNamed:@"12.png"] forKey:@"Highlighted"];
+	[imgDic2 setObject:[UIImage imageNamed:@"102.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic3 setObject:[UIImage imageNamed:@"03.png"] forKey:@"Default"];
-	[imgDic3 setObject:[UIImage imageNamed:@"03.png"] forKey:@"Highlighted"];
-	[imgDic3 setObject:[UIImage imageNamed:@"00.png"] forKey:@"Selected"];
+	[imgDic3 setObject:[UIImage imageNamed:@"13.png"] forKey:@"Default"];
+	[imgDic3 setObject:[UIImage imageNamed:@"13.png"] forKey:@"Highlighted"];
+	[imgDic3 setObject:[UIImage imageNamed:@"103.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic4 setObject:[UIImage imageNamed:@"04.png"] forKey:@"Default"];
-	[imgDic4 setObject:[UIImage imageNamed:@"04.png"] forKey:@"Highlighted"];
-	[imgDic4 setObject:[UIImage imageNamed:@"00.png"] forKey:@"Selected"];
+	[imgDic4 setObject:[UIImage imageNamed:@"14.png"] forKey:@"Default"];
+	[imgDic4 setObject:[UIImage imageNamed:@"14.png"] forKey:@"Highlighted"];
+	[imgDic4 setObject:[UIImage imageNamed:@"104.png"] forKey:@"Selected"];
 
 	
 	NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
 	
 	leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
-	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"input_bg.png"]];
-	[leveyTabBarController setTabBarTransparent:YES];
+	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"xx_tabbar_bg.png"]];
+	//[leveyTabBarController setTabBarTransparent:YES];
 //	[self.window addSubview:leveyTabBarController.view];
 //    
 //    // Override point for customization after application launch.
 //    //self.window.backgroundColor = [UIColor redColor];
-    [self.window makeKeyAndVisible];
+    
+//    self.window.backgroundColor = RGBA(36, 169, 225, 1);
+//    //[self.window addSubview:leveyTabBarController.view];
+//    self.window.rootViewController = leveyTabBarController;
+//    [self.window makeKeyAndVisible];
     
     fView =[[UIImageView alloc]initWithFrame:self.window.frame];//初始化fView
     fView.image=[UIImage imageNamed:@"f.png"];//图片f.png 到fView
@@ -148,11 +166,45 @@
     [self.window addSubview:rView];//add 到window
     
     [self performSelector:@selector(TheAnimation) withObject:nil afterDelay:0];//3秒后执行TheAnimation
+
     return YES;
+}
+
+//设置Nav样式
+- (void)setTheNavBar {
+    
+    if (IOS7) {
+        //设置NavBar样式
+        NSShadow *shadow = [[NSShadow alloc] init];
+        shadow.shadowColor = [UIColor colorWithRed:10.0 green:10.0 blue:10.0 alpha:0.6];
+        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                               RGBA(234, 234, 234, 1), NSForegroundColorAttributeName,
+                                                               shadow, NSShadowAttributeName,
+                                                               [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0], NSFontAttributeName, nil]];
+        //xx_tabbar_bg xx_nav_bar_bg1.png
+        //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xx_nav_bar_bg1.png"] forBarMetrics:UIBarMetricsDefault];//导航条设置
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xx_nav_bar_bg1.png"] forBarMetrics:UIBarMetricsDefault];
+        //[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        //[[UINavigationBar appearance] setBarTintColor:RGBA(36, 169, 225, 1)];
+
+    } else {
+        
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xx_nav_bar_bg.png"] forBarMetrics:UIBarMetricsDefault];//导航条设置
+    }
+
+
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+//    else if ([viewController isKindOfClass:[FFMainVC class]]) {
+//        
+//        FFMainVC *myMainVC = (FFMainVC *)viewController;
+//        if ([myMainVC.favOrNot intValue] != 1) {
+//            
+//            [leveyTabBarController hidesTabBar:NO animated:YES];
+//        }
+//    }
     
 	if ([viewController isKindOfClass:[FFSetNameViewController class]] ){
         
@@ -160,13 +212,11 @@
 	} else if ([viewController isKindOfClass:[FFSettingViewController class]]) {
     
         [leveyTabBarController hidesTabBar:NO animated:YES];
-    } else if ([viewController isKindOfClass:[FFMainVC class]]) {
-        
-        FFMainVC *myMainVC = (FFMainVC *)viewController;
-        if ([myMainVC.favOrNot intValue] != 1) {
-            
+    } else if ([viewController isKindOfClass:[FFBusinessViewController class]]) {
             [leveyTabBarController hidesTabBar:NO animated:YES];
-        }
+    }else if ([viewController isKindOfClass:[MXSNewsViewController class]]) {
+        
+        [leveyTabBarController hidesTabBar:NO animated:YES];
     }
 }
 
@@ -205,11 +255,11 @@
                      }
                      completion:^(BOOL finished){
                          
-                         [self.window addSubview:leveyTabBarController.view];
-                         
-                         // Override point for customization after application launch.
-                         //self.window.backgroundColor = [UIColor redColor];
+                         self.window.backgroundColor = RGBA(0, 0, 0, 1);
+                         //[self.window addSubview:leveyTabBarController.view];
+                         self.window.rootViewController = leveyTabBarController;
                          [self.window makeKeyAndVisible];
+
                      }];
     
 }

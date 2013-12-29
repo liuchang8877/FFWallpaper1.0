@@ -35,7 +35,7 @@
 #import "UIColor+FlatUI.h"
 #import "FUIButton.h"
 #import "UIFont+FlatUI.h"
-
+#import "FFHelpers.h"
 @interface TMPostDetailViewController ()
 
 @end
@@ -59,6 +59,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //ios7适配
+    [FFHelpers removerCoverView:self];
     [self setTheBar];
     [self setTheNavigationItem];
     [self setTheImageByID];
@@ -88,7 +90,7 @@
 
 - (void)showPlainTableView {
 
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //get the the favorite
@@ -110,9 +112,11 @@
 //set the bar
 -(void)setTheBar {
 
-    self.myToolBar.barStyle = UIBarStyleDefault;
-
-
+    //self.myToolBar.barStyle = UIBarStyleDefault;
+    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"toolbar.png"]
+                            forToolbarPosition:UIBarPositionBottom
+                                    barMetrics:UIBarMetricsDefault];
+    
     FUIButton *myButtonLeft = [[FUIButton alloc]init];
     myButtonLeft.frame = CGRectMake(10, 5, 100, 35);
     //[myButton.titleLabel setText:@"ok"];
@@ -211,28 +215,13 @@
     
     float height = DEVICE_IS_IPHONE5?568:480;
     if (height == 568) {
-        
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        
-            // 4"
-            self.imageView.frame = CGRectMake(0, 45, 320, 460);
-        
-        } else {
-        
-            // 4"
-            self.imageView.frame = CGRectMake(0, 0, 320, 480);
-        }
+        // 4"
+        self.imageView.frame = CGRectMake(0, 0, 320, 463);
         
     } else {
-        
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        
-            // 3.5"
-            self.imageView.frame = CGRectMake(0, 45, 320, 370);
-        } else {
-            // 3.5"
-            self.imageView.frame = CGRectMake(0, 0, 320, 375);
-        }
+        // 3.5"
+        self.imageView.frame = CGRectMake(0, 0, 320, 373);
+
         
     }
     

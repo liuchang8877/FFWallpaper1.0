@@ -9,12 +9,13 @@
 #import "FFMainVC.h"
 #import "PinterestCell.h"
 #import "TMPostDetailViewController.h"
-#import "UITabBarController+hidable.h"
 #import "FFDataBase.h"
 #import "FFModle.h"
 #import "LeveyTabBarController.h"
 #import "UIBarButtonItem+FlatUI.h"
 #import "UIColor+FlatUI.h"
+#import "FFHelpers.h"
+
 @interface FFMainVC () {
     
     CGFloat startContentOffset;
@@ -42,15 +43,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //IOS7适配
+    [FFHelpers removerCoverView:self];
 	// Do any additional setup after loading the view.
     self.title = @"壁纸";
     //self.navigationController.navigationBar.tintColor = [UIColor purpleColor];
     
     [self setThePSCollectionView];
-    
+    [self setTheNavigationItem];
     if (favOrNot) {
         self.title = @"红心壁纸";
-        [self setTheNavigationItem];
     }
 
 }
@@ -277,9 +279,5 @@
     [self contract];
     return YES;
 }
-
-
-
-
 
 @end

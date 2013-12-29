@@ -34,7 +34,7 @@
     NSString* imgeID;
 }
 
-@property (weak, nonatomic) IBOutlet UIToolbar *myToolBar;
+@property (strong, nonatomic) IBOutlet UIToolbar *myToolBar;
 @property(strong,nonatomic)NSString* imgeID;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) NSMutableArray *itmes;
