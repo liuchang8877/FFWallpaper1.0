@@ -26,6 +26,7 @@
     UIPageControl *page;
     int TimeNum;
     BOOL Tend;
+    NSArray *myTitleImgArr;
 }
 
 @end
@@ -77,8 +78,9 @@
     myADScrollView.showsVerticalScrollIndicator=NO;
     myADScrollView.showsHorizontalScrollIndicator=NO;
     //锁定滚动
-    myADScrollView.directionalLockEnabled=YES;
-    myADScrollView.pagingEnabled=NO;
+    myADScrollView.pagingEnabled = YES;
+    [myADScrollView setShowsHorizontalScrollIndicator:NO];
+    [myADScrollView setShowsVerticalScrollIndicator:NO];
     //设置timer
     [NSTimer scheduledTimerWithTimeInterval:1 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
     [self.view addSubview:myADScrollView];
@@ -90,7 +92,7 @@
     
     page = [[UIPageControl alloc] init];
     
-    page.frame = CGRectMake(150, 125, 20, 20);//指定位置大小
+    page.frame = CGRectMake(150, 115, 20, 20);//指定位置大小
     
     page.numberOfPages = 4;//指定页面个数
     
@@ -186,7 +188,9 @@
 
 //myADScrollView点击响应
 -(void)Action{
-    
+    FFNewsDetailViewController *myNewsDetailVC = [[FFNewsDetailViewController alloc]init];
+    myNewsDetailVC.myNewsInfo = [myTitleImgArr objectAtIndex:page.currentPage];
+    [self.navigationController pushViewController:myNewsDetailVC animated:YES];
 }
 
 //更新数据
@@ -213,7 +217,7 @@
         //这只标题图
         if ([myNewsListArr count] > 4) {
             NSRange range = NSMakeRange ([myNewsListArr count] - 4, 4);
-            NSArray *myTitleImgArr =[myNewsListArr subarrayWithRange:range];
+            myTitleImgArr =[myNewsListArr subarrayWithRange:range];
             [self AdImg:myTitleImgArr];
         }
         [myTableView reloadData];

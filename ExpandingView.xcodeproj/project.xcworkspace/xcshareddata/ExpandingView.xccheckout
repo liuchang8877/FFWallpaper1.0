@@ -5,41 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FDAF69C7-4496-4023-A729-0EF973D84156</string>
+	<string>ADE323AD-766C-4C6A-A67F-6CD440230BFF</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ExpandingView</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9A42AA7C-EEB0-4B73-B400-7F909424B98D</key>
-		<string>https://svn.sinaapp.com/ffwallpaper</string>
+		<key>42EF3528-35CA-4B41-BCF7-3DDEDE91E4F9</key>
+		<string>https://github.com/liuchang8877/FFWallpaper1.0.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>3/FFWallpaper1.0/ExpandingView.xcodeproj/project.xcworkspace</string>
+	<string>ExpandingView.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9A42AA7C-EEB0-4B73-B400-7F909424B98D</key>
-		<string>../../../..</string>
-	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>9A42AA7C-EEB0-4B73-B400-7F909424B98D</key>
-		<string>https://svn.sinaapp.com/ffwallpaper</string>
+		<key>42EF3528-35CA-4B41-BCF7-3DDEDE91E4F9</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://svn.sinaapp.com/ffwallpaper/2/FFWallpaper1.0/ExpandingView.xcodeproj</string>
+	<string>https://github.com/liuchang8877/FFWallpaper1.0.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9A42AA7C-EEB0-4B73-B400-7F909424B98D</string>
+	<string>42EF3528-35CA-4B41-BCF7-3DDEDE91E4F9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9A42AA7C-EEB0-4B73-B400-7F909424B98D</string>
+			<string>42EF3528-35CA-4B41-BCF7-3DDEDE91E4F9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>wallpaper</string>
+			<string>FFWallpaper1</string>
 		</dict>
 	</array>
 </dict>
